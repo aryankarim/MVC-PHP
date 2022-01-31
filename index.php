@@ -57,16 +57,21 @@ if ($url == '/') {
 
 
         // If there is a method - Second parameter
-        if ($requestedAction != '') {
-            // then we call the method via the view
-            // dynamic call of the view
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST["todo"])) {
-                    print $viewObj->$addTodo($_POST["todo"]);
-                }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST["todo"])) {
+                print $controllerObj->addTodo($_POST["todo"]);
+                print $viewObj->index();
             }
         } else {
-            print $viewObj->index();
+            if ($requestedAction != '') {
+                // then we call the method via the view
+                // dynamic call of the view
+                //$objview -<$requestdAction
+
+            } else {
+                print $viewObj->index();
+            }
         }
     } else {
         // No countroller was found

@@ -11,4 +11,9 @@ class TodosController {
     public function getAllTodos() {
         return $this->model->allTodos();
     }
+
+    // Send data to model to be added
+    public function addTodo($todo) {
+        $this->model->addTodo($todo);
+    }
 }

@@ -14,7 +14,14 @@ class TodosView {
 
     //show all todos
     public function index() {
+
         $allTodos = $this->controller->getAllTodos();
+
+        echo '<form method="POST" action="/MVC-PHP/todos">';
+        echo 'Name: <input type="text" name="todo">';
+        echo '<input type="submit">';
+        echo '</form>';
+
         echo '<ul>';
         foreach ($allTodos as $obj) {
             $completed = $obj["completed"] ? 'yes' : 'no';
