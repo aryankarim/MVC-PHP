@@ -1,5 +1,4 @@
 <?php
-//Home Page View
 class IndexView {
     private $model;
     private $controller;
