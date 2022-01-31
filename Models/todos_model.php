@@ -27,6 +27,5 @@ class TodosModel {
         $jsonData = json_encode($tempArray);
         $this->todos = $tempArray;
         file_put_contents(__DIR__ . '/DB.json', $jsonData);
-        echo __DIR__;
     }
 }
