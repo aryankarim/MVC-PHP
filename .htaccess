@@ -1,6 +1,8 @@
 RewriteEngine On
 
+# If directory and file wasn't found on the browser then rewrite the rule below
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
+# Redirect to all unknown routes to index.php
 RewriteRule ^(.+)$ index.php/$1 [L]
