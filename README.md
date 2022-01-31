@@ -1,5 +1,11 @@
 ##Custom MVC using PHP
 
+Model View Controller
+
+Model: provides data
+View: presents data
+Controller: gets requests and connects Model and View
+
 Author: Aryan Karim
 
 References:

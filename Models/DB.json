@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": 0,
+      "todo": "I need to rest!",
+      "completed": false
+    },
+    {
+      "id": 1,
+      "todo": "I will go to swim!",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "todo": "I will code!",
+      "completed": true
+    }
+  ]
+}

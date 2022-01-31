@@ -31,7 +31,7 @@ if ($url == '/') {
     // declare action for the controller if it exist
     $requestedAction = isset($url[1]) ? $url[1] : '';
 
-    // declare other params in an array
+    // declare other params in an array in case they exist
     $requestedParams = array_slice($url, 2);
 
     // Check if MVC exists for the request
@@ -55,11 +55,18 @@ if ($url == '/') {
         $controllerObj  = new $controllerName(new $modelName);
         $viewObj        = new $viewName($controllerObj);
 
+
         // If there is a method - Second parameter
         if ($requestedAction != '') {
             // then we call the method via the view
             // dynamic call of the view
-            print $viewObj->$requestedAction($requestedParams);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST["todo"])) {
+                    print $viewObj->$addTodo($_POST["todo"]);
+                }
+            }
+        } else {
+            print $viewObj->index();
         }
     } else {
         // No countroller was found
