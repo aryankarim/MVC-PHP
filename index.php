@@ -17,7 +17,7 @@ if ($url == '/') {
     // Call the Index Model via its controller
     $indexController = new IndexController($indexModel);
     // Create the View based on what Model has returned
-    $indexView = new IndexView($indexController, $indexModel);
+    $indexView = new IndexView($indexController);
 
     // Print the Home Page View
     print $indexView->index();
@@ -53,7 +53,7 @@ if ($url == '/') {
 
         // Create corresponding MVC instances
         $controllerObj  = new $controllerName(new $modelName);
-        $viewObj        = new $viewName($controllerObj, new $modelName);
+        $viewObj        = new $viewName($controllerObj);
 
         // If there is a method - Second parameter
         if ($requestedAction != '') {
