@@ -6,9 +6,9 @@ I used Apache Server provided by XAMPP Control Panel V.3.2.4 whcih uses Php Vers
 
 ## How To Demo:
 
--place MVC_PHP folder inside the root of your apache server
--make sure AllowOverride All is configured inside your httpd config.
--visit `<apache_server>/MVC-PHP/todos`
+- place MVC_PHP folder inside the root of your apache server
+- make sure AllowOverride All is configured inside your httpd config.
+- visit `<apache_server>/MVC-PHP/todos`
 
 ## API routes
 
