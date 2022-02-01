@@ -56,22 +56,30 @@ if ($url == '/') {
         $viewObj        = new $viewName($controllerObj);
 
 
-        // If there is a method - Second parameter
+        // These if statements all the http requests
         if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE" || $_SERVER['REQUEST_METHOD'] === "GET" || $_SERVER['REQUEST_METHOD'] === "PUT") {
+
+            //adds new todo
             if (isset($_POST["todo"])) {
                 print $controllerObj->addTodo($_POST["todo"]);
                 print $viewObj->index();
             }
+            //deletes the todo e.g. /todos/4
             if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
                 $controllerObj->deleteTodo($requestedAction);
             }
+            //returns html of GET requests.
             if ($_SERVER['REQUEST_METHOD'] === "GET") {
+                //If request route was /todos
                 if ($requestedAction == '') {
+                    //it shows the index page of the TodoView
                     print $viewObj->index();
                 } else {
+                    //otherwise it shows the specific todo that e.g. /todos/4
                     print $viewObj->showTodo($requestedAction);
                 }
             }
+            //adds new todo
             if ($_SERVER['REQUEST_METHOD'] === "PUT") {
                 $putfp = fopen('php://input', 'r');
                 $putdata = '';
@@ -84,7 +92,7 @@ if ($url == '/') {
         }
     } else {
         // No countroller was found
-        header('HTTP/1.1 404 Not Found');
+        header('404 Not Found');
         die('404 - The file - ' . $ctrlPath . ' - not found');
     }
 }
