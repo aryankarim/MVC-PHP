@@ -57,7 +57,7 @@ if ($url == '/') {
 
 
         // If there is a method - Second parameter
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE" || $_SERVER['REQUEST_METHOD'] === "GET") {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE" || $_SERVER['REQUEST_METHOD'] === "GET" || $_SERVER['REQUEST_METHOD'] === "PUT") {
             if (isset($_POST["todo"])) {
                 print $controllerObj->addTodo($_POST["todo"]);
                 print $viewObj->index();
@@ -71,6 +71,15 @@ if ($url == '/') {
                 } else {
                     print $viewObj->showTodo($requestedAction);
                 }
+            }
+            if ($_SERVER['REQUEST_METHOD'] === "PUT") {
+                $putfp = fopen('php://input', 'r');
+                $putdata = '';
+                while ($data = fread($putfp, 1024))
+                    $putdata .= $data;
+                fclose($putfp);
+                $json = json_decode($putdata);
+                $controllerObj->updateTodo($requestedAction, $json->todo, $json->completed);
             }
         }
     } else {

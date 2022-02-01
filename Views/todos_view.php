@@ -90,7 +90,8 @@
                 todo: document.getElementById('todoId').value,
                 completed: document.getElementById('statusId').checked
             }
-            console.log(data)
+            var json = JSON.stringify(data)
+            console.log(json)
             xhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
 

@@ -46,4 +46,23 @@ class TodosModel {
         });
         return reset($tempArray);
     }
+
+    public function updateTodo($id, $newTodo, $newStatus) {
+        $tempArray = $this->todos;
+        $json = array(
+            "id"  => count($this->todos),
+            "todo" => $newTodo,
+            "completed" => $newStatus,
+        );
+        $tempArray = array_map(function ($obj) use ($id, $json) {
+            if ($obj['id'] == $id) {
+                return $json;
+            } else {
+                return $obj;
+            }
+        }, $tempArray);
+        $tempArray = json_encode($tempArray);
+        $this->todos = $tempArray;
+        file_put_contents(__DIR__ . '/DB.json', $tempArray);
+    }
 }

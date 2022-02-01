@@ -23,4 +23,7 @@ class TodosController {
     public function getTodo($id) {
         return $this->model->getTodo($id);
     }
+    public function updateTodo($id, $newTodo, $newStatus) {
+        return $this->model->updateTodo($id, $newTodo, $newStatus);
+    }
 }
