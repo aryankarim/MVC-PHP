@@ -79,7 +79,7 @@ if ($url == '/') {
                     $putdata .= $data;
                 fclose($putfp);
                 $json = json_decode($putdata);
-                $controllerObj->updateTodo($requestedAction, $json->todo, $json->completed);
+                $controllerObj->updateTodo(intval(reset($requestedParams)), $json->todo, $json->completed);
             }
         }
     } else {

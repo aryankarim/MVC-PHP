@@ -65,6 +65,7 @@
                 <div><input id="statusId" type="checkbox" <?php echo $isChecked; ?>></div>
 
                 <button onclick="editTodo(<?php echo $id; ?>)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-1/8">edit</button>
+                <div id="updateDone"></div>
             </div>
     <?php
         }
@@ -94,7 +95,7 @@
             console.log(json)
             xhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
-
+                    document.getElementById('updateDone').innerHTML = "<a href='/MVC-PHP/todos' class='bg-green-500'> check update</a>"
                 }
             };
             xhttp.open("PUT", "todos/" + id + "", true);

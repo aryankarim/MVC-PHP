@@ -1,1 +1,4 @@
-[{"id":1,"todo":"update works","completed":true}]
+[
+  { "id": 0, "todo": "new", "completed": false },
+  { "id": 1, "todo": "upd works", "completed": true }
+]

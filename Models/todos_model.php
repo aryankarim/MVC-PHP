@@ -50,7 +50,7 @@ class TodosModel {
     public function updateTodo($id, $newTodo, $newStatus) {
         $tempArray = $this->todos;
         $json = array(
-            "id"  => count($this->todos),
+            "id"  => $id,
             "todo" => $newTodo,
             "completed" => $newStatus,
         );
