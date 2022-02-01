@@ -39,12 +39,34 @@
                 echo '<li class="m-4" id="li' . $obj["id"] . '">';
                 echo '<span class="text-lg font-bold text-green-500">' . $obj['todo'] . '</span>';
                 echo '<div><span class="font-bold">completed:</span> ' . $completed . ' </div>';
-                echo '<button  onclick="deleteTodo(' . $obj["id"] . ')" class="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded focus:outline-none focus:shadow-outline w-1/8">delete</button>';
-                echo '<button  class="bg-green-500 hover:bg-green-700 text-white font-bold  px-4 rounded focus:outline-none focus:shadow-outline w-1/8">edit</button>';
+                echo '<button  onclick="deleteTodo(' . $obj["id"] . ')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-1/8">delete</button>';
+                echo '<a  href="/MVC-PHP/todos/' . $obj["id"] . '" class="bg-green-500 hover:bg-green-700 text-white font-bold  py-1 px-4 rounded focus:outline-none focus:shadow-outline w-1/8">View Todo</a>';
                 echo "<hr>";
                 echo '</li>';
             }
             echo '</ol>';
+        }
+
+        // Show only one todo
+        public function showTodo($id) {
+            $todo = $this->controller->getTodo($id);
+            $completed = $todo["completed"] ? "Completed" : "Incomplete";
+            $isChecked = $todo["completed"] ? "checked" : "unchecked";
+            $id = $todo["id"];
+    ?>
+            <div class="m-5">
+                <div>Todo:</div>
+                <div><?php echo $todo["todo"]; ?></div>
+                <div>Completed:</div>
+                <div><?php echo $completed; ?></div>
+                <div>Edit Todo:</div>
+                <input id="todoId" type="text" class="border-2 border-black">
+                <div>Edit Status:</div>
+                <div><input id="statusId" type="checkbox" <?php echo $isChecked; ?>></div>
+
+                <button onclick="editTodo(<?php echo $id; ?>)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-1/8">edit</button>
+            </div>
+    <?php
         }
     }
 
@@ -60,6 +82,22 @@
             };
             xhttp.open("DELETE", "todos/" + id + "", true);
             xhttp.send();
+        }
+
+        function editTodo(id) {
+            var xhttp = new XMLHttpRequest();
+            var data = {
+                todo: document.getElementById('todoId').value,
+                completed: document.getElementById('statusId').checked
+            }
+            console.log(data)
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+
+                }
+            };
+            xhttp.open("PUT", "todos/" + id + "", true);
+            xhttp.send(json);
         }
     </script>
 </body>

@@ -20,4 +20,7 @@ class TodosController {
     public function deleteTodo($id) {
         $this->model->deleteTodo($id);
     }
+    public function getTodo($id) {
+        return $this->model->getTodo($id);
+    }
 }

@@ -57,7 +57,7 @@ if ($url == '/') {
 
 
         // If there is a method - Second parameter
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE") {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE" || $_SERVER['REQUEST_METHOD'] === "GET") {
             if (isset($_POST["todo"])) {
                 print $controllerObj->addTodo($_POST["todo"]);
                 print $viewObj->index();
@@ -65,9 +65,12 @@ if ($url == '/') {
             if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
                 $controllerObj->deleteTodo($requestedAction);
             }
-        } else {
-            if ($requestedAction == '') {
-                print $viewObj->index();
+            if ($_SERVER['REQUEST_METHOD'] === "GET") {
+                if ($requestedAction == '') {
+                    print $viewObj->index();
+                } else {
+                    print $viewObj->showTodo($requestedAction);
+                }
             }
         }
     } else {
