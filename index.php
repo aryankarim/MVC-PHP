@@ -57,19 +57,16 @@ if ($url == '/') {
 
 
         // If there is a method - Second parameter
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === "DELETE") {
             if (isset($_POST["todo"])) {
                 print $controllerObj->addTodo($_POST["todo"]);
                 print $viewObj->index();
             }
+            if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
+                $controllerObj->deleteTodo($requestedAction);
+            }
         } else {
-            if ($requestedAction != '') {
-                // then we call the method via the view
-                // dynamic call of the view
-                //$objview -<$requestdAction
-
-            } else {
+            if ($requestedAction == '') {
                 print $viewObj->index();
             }
         }

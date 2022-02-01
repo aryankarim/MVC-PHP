@@ -16,4 +16,8 @@ class TodosController {
     public function addTodo($todo) {
         $this->model->addTodo($todo);
     }
+
+    public function deleteTodo($id) {
+        $this->model->deleteTodo($id);
+    }
 }
